@@ -1,0 +1,3 @@
+{
+  "exec": "bable-node src/server.js"
+}
