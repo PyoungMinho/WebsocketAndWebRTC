@@ -16,10 +16,13 @@ const handleListen = () => console.log('listening on http://localhost:3000');
 const server = http.createServer(app);
 const wss = new WebSocket.Server({server}); // ws와 http서버를 3000포트에 둘 다 생성
 
-function handleConnection(socket) {
-    console.log(socket);
-}
-
-wss.on("connection", handleConnection)
+wss.on("connection", (socket) => { //익명함수 활용
+    console.log("connected to Browser ✅");
+    socket.on("close", () => console.log("DisConnected from the Browser ❌"));
+    socket.on("message", (message) =>{
+        console.log(message.toString('utf8'));
+    })
+    socket.send("hello!!!!");
+})
 
 server.listen(3000,handleListen);
