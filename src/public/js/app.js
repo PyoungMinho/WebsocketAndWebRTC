@@ -15,9 +15,8 @@ socket.addEventListener("open", () =>{
 });
 
 socket.addEventListener("message", (message) =>{
-    // console.log("New message : " + message.data.toString('utf8'));
     const li = document.createElement("li");
-    li.innerText = message.data.toString('utf8');
+    li.innerText = message.data.toString();
     messageList.append(li);
 
 });
@@ -33,6 +32,9 @@ function handleSubmit(event) {
     event.preventDefault();
     const input = messageForm.querySelector("input");
     socket.send(makeMessage("new_message", input.value));
+    const li = document.createElement("li");
+    li.innerText = `You: ${input.value}`;
+    messageList.append(li);
     input.value = "";
 }
 
