@@ -18,7 +18,7 @@ const wss = new WebSocket.Server({server}); // ws와 http서버를 3000포트에
 
 const sockets = [];
 
-wss.on("connection", (socket) => { //익명함수 활용
+wss.on("connection", (socket) => { // 익명함수 활용
     sockets.push(socket);
     socket["nickname"] = "Anon";
     console.log("connected to Browser ✅");

@@ -28,7 +28,7 @@ socket.addEventListener("close", () => {
 // setTimeout(() => {
 //     socket.send("hello from the browser! ")
 // }, 10000);
-function handleSubmit(event) {
+function handleSubmit(event) { // 출력
     event.preventDefault();
     const input = messageForm.querySelector("input");
     socket.send(makeMessage("new_message", input.value));
