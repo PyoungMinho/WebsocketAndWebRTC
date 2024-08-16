@@ -73,6 +73,19 @@ socket.on(("bye"), (left)=>{
 
 socket.on(("new_message"), addMessage);
 
+socket.on(("room_change"), (rooms) => {
+    const roomList = welcome.querySelector("ul");
+    roomList.innerHTML = "";
+
+    if(rooms.length === 0){
+        return;
+    }
+    rooms.forEach(room => {
+        const li = document.createElement("li");
+        li.innerText=room;
+        roomList.append(li);
+    });
+});
 
 
 //이 아래로 webSocket으로 구현한 채팅 아래는 socket.io 활용

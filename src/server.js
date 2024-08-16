@@ -17,9 +17,23 @@ app.get("*", (req, res) => res.redirect("/"));
 const httpServer = http.createServer(app);
 const wsServer = new Server(httpServer);
 
+function publicRooms(){
+    const  sids = wsServer.sockets.adapter.sids;
+    const  rooms = wsServer.sockets.adapter.rooms;
+    // const { rooms, sids } = wsServer.sockets.adapter;
+    const publicRoom = [];
+    rooms.forEach(( _,key) => {
+        if(sids.get(key) === undefined){
+            publicRoom.push(key);
+        }
+    });
+    return publicRoom;
+}
+
 wsServer.on("connection",(socket) =>{
     socket["nickname"]="Anon";
     socket.onAny((event) => {
+        console.log("adapter " +wsServer.sockets.adapter.sids.keys());
         console.log(`Socket Event: ${event}`);
     })
 
@@ -27,10 +41,15 @@ wsServer.on("connection",(socket) =>{
         socket.join(roomName);
         done();
         socket.to(roomName).emit("welcome", socket.nickname);
+        wsServer.sockets.emit("room_change", publicRooms());
     });
 
     socket.on("disconnecting", () => {
         socket.rooms.forEach((room) => socket.to(room).emit("bye", socket.nickname));
+    });
+
+    socket.on("disconnect",() => {
+        wsServer.sockets.emit("room_change", publicRooms());
     });
 
     socket.on(("new_message"), (msg,room,done) => {
