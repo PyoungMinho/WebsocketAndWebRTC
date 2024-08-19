@@ -1,7 +1,8 @@
 import express from 'express';
 import http from 'http';
-import {Server, Socket} from "socket.io";
-import { instrument } from "@socket.io/admin-ui";
+import SocketIO from 'socket.io';
+// import {Server, Socket} from "socket.io";
+// import { instrument } from "@socket.io/admin-ui";
 
 const app = express();
 
@@ -17,6 +18,25 @@ const wsServer = SocketIO(httpServer);
 
 const handleListen = () => console.log('listening on http://localhost:3000');
 httpServer.listen(3000,handleListen);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 아래는 소켓 io를 통한 채팅 구현완료 코드
 // const wsServer = new Server(httpServer, {

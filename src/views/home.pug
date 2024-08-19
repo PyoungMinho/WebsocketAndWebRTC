@@ -10,6 +10,11 @@ html(lang="en")
         header
             h1 Room!
         main
+            div#myStream
+                video#myFace(autoplay, playsinline, muted, width="400", height="400")
+                button#mute Mute
+                button#camera Turn Camera Off
+                select#cameras
         // 채팅 화면 주석 ( 구현 완료 후 영상구현 )
             //div#welcome
             //    form
