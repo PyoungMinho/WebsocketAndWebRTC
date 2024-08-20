@@ -288,7 +288,7 @@ function handleAddStream(data) {
 // });
 
 
-//이 아래로 webSocket으로 구현한 채팅 아래는 socket.io 활용
+//이 아래로 webSocket으로 구현한 채팅
 // const messageList =document.querySelector('ul');
 // const messageForm = document.querySelector("#message");
 // const nickForm = document.querySelector("#nick");
