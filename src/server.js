@@ -120,6 +120,8 @@ httpServer.listen(3000,handleListen);
 // });
 
 
+//// 아래는 socket으로 구현한 채팅
+
 // const server = http.createServer(app);
 // const wss = new WebSocket.Server({server}); // ws와 http서버를 3000포트에 둘 다 생성
 // const sockets = [];
