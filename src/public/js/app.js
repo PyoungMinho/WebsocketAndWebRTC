@@ -102,7 +102,6 @@ cameraSelect.addEventListener("input", handleCameraChange);
 
 const welcomeForm = document.querySelector("form");
 const welcome = document.getElementById("welcome");
-
 async function initCall(){
     welcome.hidden = true;
     call.hidden = false;
@@ -132,8 +131,10 @@ socket.on("welcome", async () => {
     myDataChannel.addEventListener("message", (event) => console.log(event.data));
     const offer = await myPeerConnection.createOffer();
     myPeerConnection.setLocalDescription(offer);
+    console.log("signalingState welcome : ", myPeerConnection.signalingState);
     console.log("sent the offer");
     socket.emit("offer", offer, roomName);
+    // Peer A
 })
 
 socket.on("offer", async (offer) => {
@@ -143,22 +144,28 @@ socket.on("offer", async (offer) => {
             console.log(event.data)
         );
     });
+    console.log("signalingState offer : ", myPeerConnection.signalingState);
     console.log("received the offer");
     myPeerConnection.setRemoteDescription(offer);
    const answer = await myPeerConnection.createAnswer();
     myPeerConnection.setLocalDescription(answer);
    socket.emit("answer", answer,roomName);
+    console.log("signalingState emit answer offer : ", myPeerConnection.signalingState);
     console.log("send the answer");
 });
 
 socket.on("answer", (answer) => {
+    console.log("signalingState answer : ", myPeerConnection.signalingState);
     console.log("received the answer");
     myPeerConnection.setRemoteDescription(answer);
+    console.log("signalingState setRemoteDescription : ", myPeerConnection.signalingState);
 });
 
 socket.on("ice", (ice) => {
     console.log("received candidate");
+    console.log("signalingState ice : ", myPeerConnection.signalingState);
     myPeerConnection.addIceCandidate(ice);
+    console.log("signalingState addIceCandidate : ", myPeerConnection.signalingState);
 });
 
 
