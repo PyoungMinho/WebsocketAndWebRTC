@@ -1,10 +1,7 @@
 import express from 'express';
 import http from 'http';
 import SocketIO from 'socket.io';
-// import {Server, Socket} from "socket.io";
-// import { instrument } from "@socket.io/admin-ui";
-
-const app = express();
+const app = express(); //backend
 
 app.set("view engine", "pug");
 app.set("views", __dirname + "/views");

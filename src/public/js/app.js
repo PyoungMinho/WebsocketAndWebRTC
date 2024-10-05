@@ -1,5 +1,5 @@
 
-const socket = io();
+const socket = io(); //front
 
 const myFace = document.getElementById('myFace');
 const muteBtn    = document.getElementById("mute");
