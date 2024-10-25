@@ -185,7 +185,7 @@ function makeConnection(){
                 ],
             },
         ],
-    }); // STUN서버 필요 (공용ip를 찾게해주는 서버) 현재 구글제공 서버 사용 (webRTC) 구현 필요
+    }); // STUN서버 필요 (공용ip를 찾게해주는 서버) 현재 구글제공 서버 사용
 
     myPeerConnection.addEventListener("icecandidate", handleIce);
     myPeerConnection.addEventListener("addstream", handleAddStream);
